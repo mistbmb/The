@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -83,10 +84,35 @@
             border-bottom: 1px solid #eee;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: 2px;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        .logo-svg {
+            height: 50px;
+            width: auto;
+            fill: #111111;
+        }
+
+        .logo-text {
+            margin-left: 12px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #111111;
+            line-height: 1;
         }
 
         nav ul {
@@ -222,6 +248,19 @@
             font-size: 1.1rem;
         }
 
+        .map-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 0;
+            overflow: hidden;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
         .btn {
             display: inline-block;
             margin-top: 20px;
@@ -252,12 +291,29 @@
 
     <!-- NAVIGATION -->
     <header>
-        <a href="#home" class="logo-link">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 74.31 88.48" width="50" height="60"><g id="Layer_2" data-name="Layer 2"><g id="Default"><g id="POLYLINE"><rect x="57.2" y="37.15" width="14.17" height="14.17" transform="translate(-12.45 58.41) rotate(-45)"/></g><g id="POLYLINE-2" data-name="POLYLINE"><path d="M14.17,4.15h0a14.19,14.19,0,0,1,20,0h0a14.19,14.19,0,0,1,0,20h0Z"/></g><g id="POLYLINE-3" data-name="POLYLINE"><path d="M4.15,14.17,74.31,84.33h0a14.19,14.19,0,0,1-20.05,0L4.15,34.22a14.19,14.19,0,0,1,0-20Z"/></g><g id="POLYLINE-4" data-name="POLYLINE"><path d="M34.22,84.33h0a14.19,14.19,0,0,1-20,0l-10-10a14.19,14.19,0,0,1,0-20.05h0Z"/></g></g></g></svg>
+        <a href="#home" class="logo-container" aria-label="PUS&CO Home">
+            <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 74.31 88.48" role="img">
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Default">
+                        <g id="POLYLINE">
+                            <rect x="57.2" y="37.15" width="14.17" height="14.17" transform="translate(-12.45 58.41) rotate(-45)"/>
+                        </g>
+                        <g id="POLYLINE-2" data-name="POLYLINE">
+                            <path d="M14.17,4.15h0a14.19,14.19,0,0,1,20,0h0a14.19,14.19,0,0,1,0,20h0Z"/>
+                        </g>
+                        <g id="POLYLINE-3" data-name="POLYLINE">
+                            <path d="M4.15,14.17,74.31,84.33h0a14.19,14.19,0,0,1-20.05,0L4.15,34.22a14.19,14.19,0,0,1,0-20Z"/>
+                        </g>
+                        <g id="POLYLINE-4" data-name="POLYLINE">
+                            <path d="M34.22,84.33h0a14.19,14.19,0,0,1-20,0l-10-10a14.19,14.19,0,0,1,0-20.05h0Z"/>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+            <span class="logo-text">Pus &amp; Co.</span>
         </a>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#studio">Studio</a></li>
                 <li><a href="#expertise">Expertise</a></li>
@@ -267,7 +323,7 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section class="hero">
+    <section id="home" class="hero">
         <h1 class="hero-text">Architecture that bridges<br>cultures and climates.</h1>
         
         <div class="stats-grid">
@@ -299,7 +355,7 @@
             <!-- Project 1: Haiti -->
             <div class="project-card">
                 <!-- Replace src with actual image -->
-                <img src="https://images.unsplash.com/photo-1590642916589-592bca10dfbf?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Haiti Social Housing">
+                <img src="Pictures/Social_Housing.jpg" alt="Haiti Social Housing">
                 <div class="project-info">
                     <h3 class="project-title">Morne à Cabrit Social Housing</h3>
                     <p class="project-meta">Port-au-Prince, Haiti | 240,000 m² | 172 Blocks</p>
@@ -309,7 +365,7 @@
 
             <!-- Project 2: Baku Bus Terminal -->
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1518382473166-4c95557669c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Baku Bus Terminal">
+                <img src="Pictures/baku-bus.jpg" alt="Baku Bus Terminal">
                 <div class="project-info">
                     <h3 class="project-title">Baku Bus Station MMS-1</h3>
                     <p class="project-meta">Baku, Azerbaijan | 158,000 m² | Infrastructure</p>
@@ -319,7 +375,7 @@
 
             <!-- Project 3: Turkmenistan Oil Campus -->
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Dragon Oil Campus">
+                <img src="Pictures/dragon-oil.jpg" alt="Dragon Oil Campus">
                 <div class="project-info">
                     <h3 class="project-title">Dragon Oil Accommodation</h3>
                     <p class="project-meta">Hazar, Turkmenistan | 50,000 m² | Industrial</p>
@@ -329,7 +385,7 @@
 
             <!-- Project 4: Rolex Retail -->
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1565514020126-292c552d4796?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Rolex Store Interior">
+                <img src="Pictures/rolex.jpg" alt="Rolex Store Interior">
                 <div class="project-info">
                     <h3 class="project-title">Rolex Rhodium Interiors</h3>
                     <p class="project-meta">Istanbul, Turkey | Retail Design</p>
@@ -339,7 +395,7 @@
 
             <!-- Project 5: Ashgabat KIA Center -->
             <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="KIA Center Ashgabat">
+                <img src="Pictures/Kia_Center.jpg" alt="KIA Center Ashgabat">
                 <div class="project-info">
                     <h3 class="project-title">Ashgabat KIA Center</h3>
                     <p class="project-meta">Ashgabat, Turkmenistan | 4,500 m² | Commercial</p>
@@ -349,7 +405,7 @@
 
              <!-- Project 6: Residential -->
              <div class="project-card">
-                <img src="https://images.unsplash.com/photo-1600596542815-e32c215dd864?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="Zekeriyaköy Residence">
+                <img src="Pictures/Housing_Estate.jpg" alt="Zekeriyaköy Residence">
                 <div class="project-info">
                     <h3 class="project-title">Zekeriyaköy Güneşli Evler</h3>
                     <p class="project-meta">Istanbul, Turkey | Residential</p>
@@ -371,23 +427,10 @@
                 <p>
                     With over 14 years of experience, we have delivered projects in Turkey, Azerbaijan, Turkmenistan, Haiti, and Georgia. Our work spans from massive infrastructure hubs to intimate private residences.
                 </p>
-                <br>
-                <p>
-                    <strong>Founder:</strong> Bora Pus<br>
-                    <strong>Education:</strong> Mimar Sinan Fine Arts University (2012)<br>
-                    <strong>Languages:</strong> Turkish (Native), English (Fluent)
-                </p>
             </div>
             <div>
                 <h3>Our Approach</h3>
                 <p>We believe great architecture emerges from collaboration. Our process integrates client engagement, research-led design, and technical precision through BIM workflows.</p>
-                <br>
-                <h3>Key Partners</h3>
-                <ul style="font-size: 0.9rem; color: #555;">
-                    <li>Tolga Architecture</li>
-                    <li>İlk Construction Trade, Inc.</li>
-                    <li>Dragon Oil Ltd.</li>
-                </ul>
             </div>
         </div>
     </section>
@@ -430,15 +473,14 @@
                 <a href="mailto:bora@pusnco.com" class="btn">Start a Project</a>
             </div>
             <div style="display:flex; align-items:center; justify-content:center;">
-                <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.658794069826!2d29.04384657671666!3d40.99165243391941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab1c4e4b5b6b7%3A0x6b8e7a8e8e8e8e8e!2sE%C4%9Fitim%2C%20Halim%20Bey%20Sk.%20No%3A16%2C%2034722%20Kad%C4%B1k%C3%B6y%2F%C4%B0stanbul!5e0!3m2!1sen!2str!4v1700000000000!5m2!1sen!2str" 
-                    width="100%" 
-                    height="300" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
+                <div class="map-container">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.667678901234!2d29.0438463156789!3d40.9916524123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa50400c80001%3A0x123456789abcdef!2sE%C4%9Fitim%2C%20Halim%20Bey%20Sk.%20No%3A16%2C%2034722%20Kad%C4%B1k%C3%B6y%2F%C4%B0stanbul%2C%20Turkey!5e0!3m2!1sen!2str!4v1620000000000!5m2!1sen!2str" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
             </div>
         </div>
     </section>
