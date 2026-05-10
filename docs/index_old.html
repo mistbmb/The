@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUS&CO Architecture & Design</title>
+    <style>
+        :root {
+            --primary: #1a1a1a;
+            --secondary: #f4f4f4;
+            --accent: #c9a55c;
+            --text-light: #ffffff;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--primary);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid #333;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-container:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+
+        .logo-svg {
+            height: 50px;
+            width: auto;
+            fill: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1487958449943-2429e8be8625?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            background: var(--accent);
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+        }
+
+        .btn:hover {
+            background: transparent;
+            color: var(--accent);
+        }
+
+        /* Sections General */
+        section {
+            padding: 100px 50px;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: var(--secondary);
+            color: var(--text-dark);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* Projects Section */
+        .projects {
+            background: var(--primary);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: #2a2a2a;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 25px;
+        }
+
+        .project-info h3 {
+            color: var(--accent);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .project-info p {
+            color: #ccc;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: #111;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .contact-info p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: #ccc;
+        }
+
+        .contact-info strong {
+            color: white;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="logo-container">
+            <!-- Updated SVG Logo -->
+            <svg class="logo-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 74.31 88.48">
+                <g id="Layer_2" data-name="Layer 2">
+                    <g id="Default">
+                        <g id="POLYLINE">
+                            <rect x="57.2" y="37.15" width="14.17" height="14.17" transform="translate(-12.45 58.41) rotate(-45)"/>
+                        </g>
+                        <g id="POLYLINE-2" data-name="POLYLINE">
+                            <path d="M14.17,4.15h0a14.19,14.19,0,0,1,20,0h0a14.19,14.19,0,0,1,0,20h0Z"/>
+                        </g>
+                        <g id="POLYLINE-3" data-name="POLYLINE">
+                            <path d="M4.15,14.17,74.31,84.33h0a14.19,14.19,0,0,1-20.05,0L4.15,34.22a14.19,14.19,0,0,1,0-20Z"/>
+                        </g>
+                        <g id="POLYLINE-4" data-name="POLYLINE">
+                            <path d="M34.22,84.33h0a14.19,14.19,0,0,1-20,0l-10-10a14.19,14.19,0,0,1,0-20.05h0Z"/>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>PUS&CO</h1>
+        <p>Architecture & Design Studio</p>
+        <a href="#projects" class="btn">View Our Work</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-content">
+            <h2>Our Philosophy</h2>
+            <p>At PUS&CO, we believe architecture is more than just building structures; it's about creating spaces that inspire, function, and endure. Our approach combines modern aesthetics with practical functionality, ensuring every project reflects the unique vision of our clients.</p>
+            <p>With a focus on sustainability and innovation, we strive to push the boundaries of design while maintaining a deep respect for the environment and community.</p>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <h2>Selected Works</h2>
+        <div class="project-grid">
+            <!-- Project 1: Baku Bus -->
+            <div class="project-card">
+                <img src="pictures/baku-bus.jpg" alt="Baku Bus Terminal" class="project-img">
+                <div class="project-info">
+                    <h3>Baku Bus Terminal</h3>
+                    <p>A modern transportation hub designed to streamline urban mobility while serving as an architectural landmark in Baku.</p>
+                </div>
+            </div>
+
+            <!-- Project 2: Dragon Oil -->
+            <div class="project-card">
+                <img src="pictures/dragon-oil.jpg" alt="Dragon Oil Headquarters" class="project-img">
+                <div class="project-info">
+                    <h3>Dragon Oil Headquarters</h3>
+                    <p>Corporate headquarters featuring sustainable design principles and state-of-the-art office facilities.</p>
+                </div>
+            </div>
+
+            <!-- Project 3: Placeholder for future projects -->
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80" alt="Residential Complex" class="project-img">
+                <div class="project-info">
+                    <h3>Residential Complex</h3>
+                    <p>Luxury residential development focusing on community spaces and natural light integration.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <h2>Get In Touch</h2>
+        <div class="contact-grid">
+            <div>
+                <h2 style="color:white; margin-bottom: 20px; text-align: left;">Let's Build Together</h2>
+                <div class="contact-info">
+                    <p><strong>Pus&Co Studio</strong></p>
+                    <p>Eğitim, Halim Bey Sk. No:16, 34722 Kadıköy/İstanbul</p>
+                    <br>
+                    <p><strong>Mobile:</strong> +90 505 263 28 80</p>
+                    <p><strong>Email:</strong> <a href="mailto:bora@pusnco.com" style="color: var(--accent); text-decoration: none;">bora@pusnco.com</a></p>
+                </div>
+                <a href="mailto:bora@pusnco.com" class="btn" style="margin-top: 20px; display: inline-block;">Start a Project</a>
+            </div>
+            <div class="map-container">
+                <!-- Google Map Embed for Kadıköy Address -->
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3011.667678901234!2d29.0438463156789!3d40.9916524123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caa50400c80001%3A0x123456789abcdef!2sE%C4%9Fitim%2C%20Halim%20Bey%20Sk.%20No%3A16%2C%2034722%20Kad%C4%B1k%C3%B6y%2F%C4%B0stanbul%2C%20Turkey!5e0!3m2!1sen!2str!4v1620000000000!5m2!1sen!2str" 
+                    allowfullscreen="" 
+                    loading="lazy">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 PUS&CO Architecture & Design. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
